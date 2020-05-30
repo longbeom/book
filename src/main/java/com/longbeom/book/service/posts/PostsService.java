@@ -2,6 +2,7 @@ package com.longbeom.book.service.posts;
 
 import com.longbeom.book.domain.posts.Posts;
 import com.longbeom.book.domain.posts.PostsRepository;
+import com.longbeom.book.web.dto.PostsResponseDto;
 import com.longbeom.book.web.dto.PostsSaveRequestDto;
 import com.longbeom.book.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,12 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
         posts.update(requestDto.getTitle(), requestDto.getContent());
         return id;
+    }
+
+    public PostsResponseDto findById(Long id) {
+        Posts entity = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id = " + id));
+
+        return new PostsResponseDto(entity);
     }
 }
