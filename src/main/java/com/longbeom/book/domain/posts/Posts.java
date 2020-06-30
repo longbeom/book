@@ -33,6 +33,6 @@ public class Posts extends BaseTimeEntity {
 
     public void update(String title, String content) {
         this.title = title;
-        this.content =content;
+        this.content = content;
     }
 }
